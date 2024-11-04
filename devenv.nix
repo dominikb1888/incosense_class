@@ -7,11 +7,19 @@
   # https://devenv.sh/packages/
   packages = [
     pkgs.git
+    pkgs.llvm
     pkgs.cargo-watch
     pkgs.cargo-tarpaulin
     pkgs.clippy
     pkgs.rustfmt
     pkgs.cargo-audit
+  ]++ lib.optionals pkgs.stdenv.isDarwin [
+    pkgs.libiconv
+    pkgs.darwin.apple_sdk.frameworks.SystemConfiguration
+    pkgs.darwin.CF
+    pkgs.darwin.Security
+    pkgs.darwin.configd
+    pkgs.darwin.dyld
   ];
 
   # https://devenv.sh/languages/
