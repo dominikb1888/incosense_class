@@ -12,6 +12,7 @@
     pkgs.cargo-tarpaulin
     pkgs.clippy
     pkgs.rustfmt
+    pkgs.sqlx-cli
     pkgs.cargo-audit
   ]++ lib.optionals pkgs.stdenv.isDarwin [
     pkgs.libiconv
