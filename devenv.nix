@@ -29,8 +29,14 @@
   # https://devenv.sh/processes/
   processes.cargo-watch.exec = "cargo-watch";
 
-  # https://devenv.sh/services/
-  # services.postgres.enable = true;
+ # https://devenv.sh/services/
+  services.postgres = {
+    enable = true;
+    listen_addresses = "localhost";
+    port = 5432;
+    initialScript = "CREATE USER postgres SUPERUSER;";
+    initialDatabases = [ { name = "newsletter"; } ];
+  };
 
   # https://devenv.sh/scripts/
   scripts.hello.exec = ''
