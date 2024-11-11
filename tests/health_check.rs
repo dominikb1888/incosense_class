@@ -1,8 +1,10 @@
 #[cfg(test)]
 mod tests {
 
+    use sqlx::{Connection, PgConnection};
     use std::net::TcpListener;
 
+    use incosense_class::configuration::get_configuration;
     use incosense_class::startup::run;
 
     #[tokio::test]
@@ -38,6 +40,11 @@ mod tests {
     #[tokio::test]
     async fn subsrcibe_returns_200_for_valid_form_data() {
         let app_address = spawn_app().await;
+        let configuraton = get_configuration().expect("Failed to read configuraton.");
+        let connection_string = configuraton.database.connection_string();
+        let mut connection = PgConnection::connect(&connection_string)
+            .await
+            .expect("Failed to connect to Postgres.");
         let client = reqwest::Client::new();
 
         let body = "name=le%20guin&email=ursula_le_guin%40gmail.com";
@@ -50,6 +57,14 @@ mod tests {
             .expect("Failed to execute request");
 
         assert_eq!(200, response.status().as_u16());
+
+        let saved = sqlx::query!("SELECT email, name FROM subscriptions",)
+            .fetch_one(&mut connection)
+            .await
+            .expect("Failed to fetch saved subscription.");
+
+        assert_eq!(saved.email, "ursula_le_guin@gmail.com");
+        assert_eq!(saved.name, "le guin");
     }
 
     #[tokio::test]
