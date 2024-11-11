@@ -12,3 +12,6 @@ devenv.local.nix
 # Added by cargo
 
 /target
+
+# config file of the app
+configuration.yaml

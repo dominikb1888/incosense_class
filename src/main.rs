@@ -1,6 +1,6 @@
 use std::net::TcpListener;
 
-use incosense_class::run;
+use incosense_class::startup::run;
 
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {

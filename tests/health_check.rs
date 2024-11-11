@@ -3,6 +3,8 @@ mod tests {
 
     use std::net::TcpListener;
 
+    use incosense_class::startup::run;
+
     #[tokio::test]
     async fn health_check_succeeds() {
         let address = spawn_app().await;
@@ -26,7 +28,7 @@ mod tests {
         let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind random port");
         // We retrieve the port assigned to us by the OS
         let port = listener.local_addr().unwrap().port();
-        let server = incosense_class::run(listener).expect("Failed to bind address");
+        let server = run(listener).expect("Failed to bind address");
         let _ = tokio::spawn(server);
 
         // We return the application address to the caller
@@ -40,7 +42,7 @@ mod tests {
 
         let body = "name=le%20guin&email=ursula_le_guin%40gmail.com";
         let response = client
-            .post(&format!("{}/subscriptions", &app_address))
+            .post(&format!("{}/subscribe", &app_address))
             .header("Content-Type", "application/x-www-form-urlencoded")
             .body(body)
             .send()
@@ -64,7 +66,7 @@ mod tests {
         for (invalid_body, error_message) in test_cases {
             // Act
             let response = client
-                .post(&format!("{}/subscriptions", &app_address))
+                .post(&format!("{}/subscribe", &app_address))
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .body(invalid_body)
                 .send()

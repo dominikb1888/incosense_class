@@ -12,7 +12,7 @@ if ! [ -x "$(command -v sqlx)" ]; then
   echo >&2 "Error: sqlx is not installed."
   echo >&2 "Use:"
   echo >&2 "    cargo install --version='~0.7' sqlx-cli\--no-default-features --features rustls, postgres"
-  echo>&2"to install it."
+  echo >&2 "to install it."
   exit 1
 fi
 
@@ -41,6 +41,7 @@ DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAM
 
 export DATABASE_URL
 
+# TODO: ADD Scripts to create Database and postgres role
 
 
 sqlx database create
