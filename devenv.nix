@@ -32,9 +32,9 @@
  # https://devenv.sh/services/
   services.postgres = {
     enable = true;
-    listen_addresses = "localhost";
+    listen_addresses = "127.0.0.1";
     port = 5432;
-    initialScript = "CREATE USER postgres SUPERUSER;";
+    initialScript = "CREATE ROLE postgres SUPERUSER;";
     initialDatabases = [ { name = "newsletter"; } ];
   };
 
