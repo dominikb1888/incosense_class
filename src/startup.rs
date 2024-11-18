@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::net::TcpListener;
 
 use actix_web::dev::Server;
-use actix_web::{middleware, web, App, HttpServer, Responder, Result};
+use actix_web::{web, App, HttpServer, Responder, Result};
 use askama::Template;
 use sqlx::PgPool;
 
@@ -12,7 +12,7 @@ use crate::routes::{health_check, stream_heartrate, stream_voltage, subscribe};
 #[template(path = "index.html")]
 struct Index;
 
-async fn index(query: web::Query<HashMap<String, String>>) -> Result<impl Responder> {
+async fn index(_query: web::Query<HashMap<String, String>>) -> Result<impl Responder> {
     let html = Index.render().expect("template should be valid");
     Ok(web::Html::new(html))
 }

@@ -1,15 +1,14 @@
 use actix_web::{web::Bytes, Error, HttpResponse};
-use chrono::{DateTime, TimeZone, Utc};
+use chrono::{DateTime, Utc};
 use futures_util::stream;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use serde_json;
-use std::fmt::{self, Display};
 use std::time::Duration;
 use tokio::time::sleep;
 
 #[derive(Serialize, Deserialize)]
-struct heartrate {
+struct Heartrate {
     voltage: f32,
     timestamp: DateTime<Utc>,
 }
@@ -22,8 +21,8 @@ pub async fn stream_heartrate() -> HttpResponse {
         let mut rng = rand::thread_rng();
         // Simulate raw voltage data (e.g., between -1.0 and 1.0 volts)
         let voltage = rng.gen_range(-1.0..1.0);
-        let heartrate = heartrate {
-            voltage: voltage,
+        let heartrate = Heartrate {
+            voltage,
             timestamp: Utc::now(),
         };
         let data = format!(
