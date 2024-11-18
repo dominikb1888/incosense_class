@@ -6,7 +6,7 @@ use tokio::time::sleep;
 
 pub async fn stream_voltage() -> HttpResponse {
     let voltage_stream = stream::unfold(0, |state| async move {
-        sleep(Duration::from_millis(100)).await;
+        sleep(Duration::from_millis(1000)).await;
         let mut rng = rand::thread_rng();
         // Simulate raw voltage data (e.g., between -1.0 and 1.0 volts)
         let voltage = rng.gen_range(-1.5..1.5);
