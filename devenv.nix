@@ -71,5 +71,6 @@
     rustfmt.enable = true;
   };
 
+  devcontainer.enable = true;
   # See full reference at https://devenv.sh/reference/options/
 }
