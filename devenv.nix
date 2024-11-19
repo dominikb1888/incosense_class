@@ -7,6 +7,7 @@
   # https://devenv.sh/packages/
   packages = [
     pkgs.git
+    pkgs.openssl
     pkgs.llvm
     pkgs.cargo-watch
     pkgs.cargo-tarpaulin
