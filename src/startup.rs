@@ -5,6 +5,7 @@ use actix_web::dev::Server;
 use actix_web::{web, App, HttpServer, Responder, Result};
 use askama::Template;
 use sqlx::PgPool;
+use tracing_actix_web::TracingLogger;
 
 use crate::routes::{health_check, stream_heartrate, stream_voltage, subscribe};
 
@@ -21,6 +22,7 @@ pub fn run(listener: TcpListener, connection: PgPool) -> Result<Server, std::io:
     let db_pool = web::Data::new(connection);
     let server = HttpServer::new(move || {
         App::new()
+            .wrap(TracingLogger::default())
             .route("/", web::get().to(index))
             .route("/health_check", web::get().to(health_check))
             .route("/subscribe", web::post().to(subscribe))

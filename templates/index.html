@@ -33,8 +33,7 @@
 
     const line = d3.line()
         .x((d, i) => x(i))
-        .y(d => y(d))
-        .curve(d3.curveCatmullRom.alpha(0.5));
+        .y(d => y(d));
 
     const g = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);

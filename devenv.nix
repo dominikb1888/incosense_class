@@ -14,6 +14,8 @@
     pkgs.rustfmt
     pkgs.sqlx-cli
     pkgs.cargo-audit
+    pkgs.bunyan-rs
+    pkgs.cargo-udeps
   ]++ lib.optionals pkgs.stdenv.isDarwin [
     pkgs.libiconv
     pkgs.darwin.apple_sdk.frameworks.SystemConfiguration
