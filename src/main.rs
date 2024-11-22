@@ -10,7 +10,7 @@ async fn main() -> Result<(), std::io::Error> {
     let connection_pool = PgPool::connect(&configuration.database.connection_string())
         .await
         .expect("Failed to connect to Postgres.");
-    let address = format!("127.0.0.1:{}", configuration.application_port);
+    let address = format!("0.0.0.0:{}", configuration.application_port);
     let listener = TcpListener::bind(address)?;
     // TODO: Add the DB connection to our call of run using configuration
     run(listener, connection_pool)?.await

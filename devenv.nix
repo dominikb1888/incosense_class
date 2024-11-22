@@ -27,9 +27,6 @@
   # https://devenv.sh/languages/
   languages.rust.enable = true;
 
-  # https://devenv.sh/processes/
-  processes.cargo-watch.exec = "cargo-watch";
-
  # https://devenv.sh/services/
   services.postgres = {
     enable = true;
@@ -38,6 +35,14 @@
     initialScript = "CREATE ROLE postgres SUPERUSER;";
     initialDatabases = [ { name = "newsletter"; } ];
   };
+
+  # https://devenv.sh/processes/
+  processes.backend.exec = "cargo build --release && cargo run";
+
+  containers.backend.name = "backend";
+  containers.backend.copyToRoot = [ ./configuration.yaml ./target/release/incosense_class ];
+  containers.backend.startupCommand = "/incosense_class";
+
 
   # https://devenv.sh/scripts/
   scripts.hello.exec = ''
