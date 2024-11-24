@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "postgres://postgres:password@db:5432/newsletter"
+    ports:
+      - "8080:8080" # Expose your app on port 8080 (adjust if needed)
+
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: newsletter
+    ports:
+      - "5432:5432"
