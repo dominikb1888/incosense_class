@@ -39,9 +39,9 @@
   # https://devenv.sh/processes/
   processes.backend.exec = "cargo build --release && cargo run";
 
-  containers.backend.name = "backend";
-  containers.backend.copyToRoot = [ ./configuration.yaml ./target/release/incosense_class ];
-  containers.backend.startupCommand = "/incosense_class";
+  containers."prod".name = "incosense_class";
+  containers."prod".copyToRoot = ./target/release;
+  containers."prod".startupCommand = "/incosense_class";
 
 
   # https://devenv.sh/scripts/
