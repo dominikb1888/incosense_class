@@ -11,6 +11,7 @@ askama = "0.12.1"
 chrono = { version = "0.4.38", features = ["serde"] }
 config = "0.13"
 futures-util = "0.3.31"
+openssl = { version = "0.10.68", features = ["vendored"] }
 rand = "0.8.5"
 reqwest = "0.11"
 serde = { version = "1.0", features = ["derive"] }
