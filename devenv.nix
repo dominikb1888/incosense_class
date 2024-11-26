@@ -12,6 +12,8 @@
     pkgs.cargo-watch
     pkgs.cargo-tarpaulin
     pkgs.clippy
+    pkgs.cloudflared
+    pkgs.doctl
     pkgs.rustfmt
     pkgs.sqlx-cli
     pkgs.cargo-audit

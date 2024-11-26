@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     musl-tools \
     && apt-get clean
 
-
+ENV SQLX_OFFLINE true
 ENV OPENSSL_STATIC=1
 ENV RUSTFLASGS="-C target-feature=-crt-static"
 ENV CARGO_TARGET=aarch64-unknown-linux-musl
@@ -35,6 +35,7 @@ FROM scratch
 
 # Copy the static binary from the build stage
 COPY --from=builder /usr/src/app/target/aarch64-unknown-linux-musl/release/incosense_class /
+COPY --from=builder /usr/src/app/configuration.yaml /
 
 # Set the binary as the entry point
 ENTRYPOINT ["/incosense_class"]

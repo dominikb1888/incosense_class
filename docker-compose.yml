@@ -9,7 +9,7 @@ services:
     environment:
       DATABASE_URL: "postgres://postgres:password@db:5432/newsletter"
     ports:
-      - "8080:8080" # Expose your app on port 8080 (adjust if needed)
+      - "8000:8000" # Expose your app on port 8080 (adjust if needed)
 
   db:
     image: postgres:15-alpine
