@@ -11,12 +11,14 @@
     pkgs.llvm
     pkgs.cargo-watch
     pkgs.cargo-tarpaulin
+    pkgs.cargo-machete
     pkgs.clippy
     pkgs.cloudflared
     pkgs.doctl
     pkgs.rustfmt
     pkgs.sqlx-cli
     pkgs.cargo-audit
+    pkgs.mold
   ]++ lib.optionals pkgs.stdenv.isDarwin [
     pkgs.libiconv
     pkgs.darwin.apple_sdk.frameworks.SystemConfiguration

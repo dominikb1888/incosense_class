@@ -22,7 +22,7 @@ COPY Cargo.toml Cargo.lock ./
 # Pre-build dependencies to cache them for faster builds
 RUN rustup target add aarch64-unknown-linux-musl
 RUN mkdir src && echo "fn main() {}" > src/main.rs
-RUN cargo build --release
+RUN cargo check --release
 
 # Copy the actual source code
 COPY . .
