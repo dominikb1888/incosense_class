@@ -28,4 +28,4 @@ panic = 'abort'     # Abort on panic
 strip = true        # Strip symbols from binary*
 
 [build]
-rustflags = ["-Z", "threads=8", "-Z", "incremental", "-C", "link-arg=-fuse-ld=mold"]
+rustflags = ["-Z", "threads=8", "-Z", "incremental"]

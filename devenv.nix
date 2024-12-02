@@ -15,6 +15,7 @@
     pkgs.clippy
     pkgs.cloudflared
     pkgs.doctl
+    pkgs.gcc
     pkgs.rustfmt
     pkgs.sqlx-cli
     pkgs.cargo-audit
@@ -29,7 +30,10 @@
   ];
 
   # https://devenv.sh/languages/
-  languages.rust.enable = true;
+  languages.rust = {
+      enable = true;
+      channel = "nightly";
+  };
 
  # https://devenv.sh/services/
   services.postgres = {
